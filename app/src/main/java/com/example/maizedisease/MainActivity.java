@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getLocation() {
         Log.d("RANDOM", "Function called ");
-//        SendPostReq(0.0, 0.0);
+        SendPostReq(0.0, 0.0);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -150,10 +150,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void SendPostReq(Double latitude, Double longitude){
-//        String postUrl = "http://10.197.1.213:8000/";
+//        String postUrl = "http://10.197.1.213:8000/data/";
 //        String postUrl = "http://0.0.0.0:8000/data/";
-        String postUrl = "http://192.168.137.1/data/";
+//        String postUrl = "http://192.168.137.1/data/";
 //        String postUrl = "http://127.0.0.1:8000/data/";
+
+//        String postUrl = "http://10.0.2.2:8000/data/";
+        String postUrl = "http://0ec0-203-129-219-162.ngrok.io/data/";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -163,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             postData.put("timestamp", formatter.format(date));
             postData.put("longitude", Double.toString(longitude));
-            postData.put("latitude", Double.toString(longitude));
+            postData.put("latitude", Double.toString(latitude));
             postData.put("predicted_class", "Nil");
         } catch (JSONException e) {
             e.printStackTrace();
