@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getLocation() {
         Log.d("RANDOM", "Function called ");
-        SendPostReq(0.0, 0.0);
+//        SendPostReq(0.0, 0.0);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
