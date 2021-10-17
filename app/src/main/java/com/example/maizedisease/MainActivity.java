@@ -64,10 +64,26 @@ public class MainActivity extends AppCompatActivity {
         imageButton = findViewById(R.id.imageButton);
         imageView = findViewById(R.id.imageView);
 
-        btLocation = findViewById(R.id.bt_loc);
+//        btLocation = findViewById(R.id.bt_loc);
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
-        btLocation.setOnClickListener(new View.OnClickListener() {
+//        btLocation.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (ActivityCompat.checkSelfPermission(MainActivity.this,
+//                        Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+//                    //When permission is granted
+//                    Log.d("RANDOM", "Permission granted: ");
+//                    getLocation();
+//                } else {
+//                    //When permission denied
+//                    ActivityCompat.requestPermissions(MainActivity.this,
+//                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+//                    Log.d("RANDOM", "Permission Denied: ");
+//                }
+//            }
+//        });
+        imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (ActivityCompat.checkSelfPermission(MainActivity.this,
@@ -81,11 +97,7 @@ public class MainActivity extends AppCompatActivity {
                             new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
                     Log.d("RANDOM", "Permission Denied: ");
                 }
-            }
-        });
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+
                 cameraKitView.captureImage(new CameraKitView.ImageCallback() {
                     @Override
                     public void onImage(CameraKitView cameraKitView, final byte[] capturedImage) {
@@ -97,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this, ImageClickedActivity.class));
                     }
                 });
+
             }
         });
         imageView.setOnClickListener(new View.OnClickListener() {

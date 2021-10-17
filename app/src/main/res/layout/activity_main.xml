@@ -33,12 +33,5 @@
         android:layout_height="80dp"
         app:srcCompat="@android:drawable/ic_menu_gallery" />
 
-    <Button
-        android:id="@+id/bt_loc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="sendloc"
-        android:text="SendLocation" />
-
 
 </LinearLayout>
