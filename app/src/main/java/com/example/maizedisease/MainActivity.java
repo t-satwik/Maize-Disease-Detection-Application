@@ -26,14 +26,27 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.camerakit.CameraKitView;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileOutputStream;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -102,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getLocation() {
         Log.d("RANDOM", "Function called ");
+//        SendPostReq(0.0, 0.0);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -112,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-
+//
         fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
             @Override
 
@@ -120,14 +134,65 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("RANDOM", "Function oncomplete ");
                 //initializing location
                 Location location = task.getResult();
+
+                Double latitude=location.getLatitude();
+                Double longitude=location.getLongitude();
                 Log.d("RANDOM", "Function location ");
                 if (location != null) {
                     Log.d("RANDOM", "Latitude: " + Double.toString(location.getLatitude()));
                     Log.d("RANDOM", "Longitude" + Double.toString(location.getLongitude()));
-
                 }
+                SendPostReq(latitude, longitude);
+                Log.d("RANDOM", "Send Post Request function called");
             }
         });
+
+    }
+
+    public void SendPostReq(Double latitude, Double longitude){
+//        String postUrl = "http://10.197.1.213:8000/";
+//        String postUrl = "http://0.0.0.0:8000/data/";
+        String postUrl = "http://192.168.137.1/data/";
+//        String postUrl = "http://127.0.0.1:8000/data/";
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+
+        JSONObject postData = new JSONObject();
+        try {
+            postData.put("timestamp", formatter.format(date));
+            postData.put("longitude", Double.toString(longitude));
+            postData.put("latitude", Double.toString(longitude));
+            postData.put("predicted_class", "Nil");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, postUrl,
+                postData, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.d("RANDOM", "response recieved");
+                System.out.println(response);
+                try {
+                    Log.d("RANDOM", response.toString(4));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("RANDOM", error.toString());
+                Log.d("RANDOM", String.valueOf(error.networkResponse.statusCode));
+                Log.d("RANDOM", String.valueOf(error.getMessage()));
+                error.printStackTrace();
+            }
+        });
+
+        requestQueue.add(jsonObjectRequest);
+
     }
 
     @Override
