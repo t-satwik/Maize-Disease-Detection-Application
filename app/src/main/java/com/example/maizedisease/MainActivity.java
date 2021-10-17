@@ -1,5 +1,6 @@
 package com.example.maizedisease;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -13,10 +14,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -24,6 +27,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.camerakit.CameraKitView;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -33,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
     private CameraKitView cameraKitView;
     private ImageButton imageButton;
     private ImageView imageView;
+    private Button btLocation;
+    FusedLocationProviderClient fusedLocationProviderClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +51,25 @@ public class MainActivity extends AppCompatActivity {
         imageButton = findViewById(R.id.imageButton);
         imageView = findViewById(R.id.imageView);
 
+        btLocation = findViewById(R.id.bt_loc);
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+
+        btLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ActivityCompat.checkSelfPermission(MainActivity.this,
+                        Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    //When permission is granted
+                    Log.d("RANDOM", "Permission granted: ");
+                    getLocation();
+                } else {
+                    //When permission denied
+                    ActivityCompat.requestPermissions(MainActivity.this,
+                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+                    Log.d("RANDOM", "Permission Denied: ");
+                }
+            }
+        });
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,10 +90,42 @@ public class MainActivity extends AppCompatActivity {
             @SuppressLint("IntentReset")
             @Override
             public void onClick(View v) {
-                @SuppressLint("IntentReset") Intent galleryIntent = new Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                @SuppressLint("IntentReset") Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 galleryIntent.setType("image/*");
                 startActivityForResult(galleryIntent, 152);
 
+            }
+        });
+
+
+    }
+
+    private void getLocation() {
+        Log.d("RANDOM", "Function called ");
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+
+        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+            @Override
+
+            public void onComplete(@NonNull Task<Location> task) {
+                Log.d("RANDOM", "Function oncomplete ");
+                //initializing location
+                Location location = task.getResult();
+                Log.d("RANDOM", "Function location ");
+                if (location != null) {
+                    Log.d("RANDOM", "Latitude: " + Double.toString(location.getLatitude()));
+                    Log.d("RANDOM", "Longitude" + Double.toString(location.getLongitude()));
+
+                }
             }
         });
     }
