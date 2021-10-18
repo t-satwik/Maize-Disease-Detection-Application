@@ -19,7 +19,7 @@ def setData(request):
         data_obj.timestamp = data['timestamp']
         data_obj.latitude = data['latitude']
         data_obj.longitude = data['longitude']
-        data_obj.predicted_class = data['predicted_class']
+        data_obj.user_id = data['user_id']
         # data_obj.image = data['image']
         data_obj.save()
         return Response({"message":"Data Sent"}, status=status.HTTP_200_OK )
