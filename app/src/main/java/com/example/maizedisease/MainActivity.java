@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-//
+
         fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
             @Override
 
@@ -169,7 +169,9 @@ public class MainActivity extends AppCompatActivity {
 //        String postUrl = "http://127.0.0.1:8000/data/";
 
 //        String postUrl = "http://10.0.2.2:8000/data/";
-        String postUrl = "http://0ec0-203-129-219-162.ngrok.io/data/";
+//        String postUrl = "http://0ec0-203-129-219-162.ngrok.io/data/";
+        String postUrl = "http://af42-14-139-150-66.ngrok.io/data/";
+
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -180,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
             postData.put("timestamp", formatter.format(date));
             postData.put("longitude", Double.toString(longitude));
             postData.put("latitude", Double.toString(latitude));
-            postData.put("predicted_class", "Nil");
+            postData.put("user_id", "1234");
         } catch (JSONException e) {
             e.printStackTrace();
         }
