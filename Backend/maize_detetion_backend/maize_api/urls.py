@@ -8,5 +8,7 @@ from maize_api.views import *
 # router.register(r'Data', DataViewSet)
 
 urlpatterns = [
-   path('', setData)
+   path('SetData/', setData),
+   path('UserLogin/', checkLogin), 
+   path('UserSignUp/', newSignup)
 ]

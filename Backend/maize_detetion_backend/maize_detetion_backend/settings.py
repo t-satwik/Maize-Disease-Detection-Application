@@ -30,7 +30,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     '10.197.1.213',
     'localhost',
-    '31c6-203-129-219-162.ngrok.io',
+    'de0b-203-129-219-162.ngrok.io',
     '396f-14-139-150-66.ngrok.io'
 ]
 
@@ -52,12 +52,11 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+    # 'django.middleware.csrf.CsrfViewMiddleware',
 ROOT_URLCONF = 'maize_detetion_backend.urls'
 
 TEMPLATES = [
@@ -132,3 +131,4 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CSRF_COOKIE_SECURE = False
