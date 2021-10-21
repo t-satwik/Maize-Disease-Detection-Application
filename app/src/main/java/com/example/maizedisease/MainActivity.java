@@ -41,12 +41,15 @@ import com.google.android.gms.tasks.Task;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import android.util.Base64;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -63,26 +66,10 @@ public class MainActivity extends AppCompatActivity {
         cameraKitView = findViewById(R.id.camera);
         imageButton = findViewById(R.id.imageButton);
         imageView = findViewById(R.id.imageView);
-
+        Global.setUserId("1234");
 //        btLocation = findViewById(R.id.bt_loc);
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
-//        btLocation.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (ActivityCompat.checkSelfPermission(MainActivity.this,
-//                        Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-//                    //When permission is granted
-//                    Log.d("RANDOM", "Permission granted: ");
-//                    getLocation();
-//                } else {
-//                    //When permission denied
-//                    ActivityCompat.requestPermissions(MainActivity.this,
-//                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
-//                    Log.d("RANDOM", "Permission Denied: ");
-//                }
-//            }
-//        });
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                         Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                     //When permission is granted
                     Log.d("RANDOM", "Permission granted: ");
+                    getTime();
                     getLocation();
                 } else {
                     //When permission denied
@@ -97,14 +85,19 @@ public class MainActivity extends AppCompatActivity {
                             new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
                     Log.d("RANDOM", "Permission Denied: ");
                 }
+                Log.d("RANDOM", "Image button CLicked");
 
                 cameraKitView.captureImage(new CameraKitView.ImageCallback() {
                     @Override
                     public void onImage(CameraKitView cameraKitView, final byte[] capturedImage) {
+                        Log.d("RANDOM", "Image captured");
                         Bitmap bitmap = BitmapFactory.decodeByteArray(capturedImage, 0, capturedImage.length);
                         Bitmap resized = Bitmap.createScaledBitmap(bitmap, 224, 224, true);
                         Global.setCapturedImage(capturedImage);
+
+
                         Global.setBitmap(resized);
+
                         //MediaStore.Images.Media.insertImage(getContentResolver(), resized, "test.jpg" ,"New");
                         startActivity(new Intent(MainActivity.this, ImageClickedActivity.class));
                     }
@@ -125,93 +118,59 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
-    private void getLocation() {
-        Log.d("RANDOM", "Function called ");
-//        SendPostReq(0.0, 0.0);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-
-        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
-            @Override
-
-            public void onComplete(@NonNull Task<Location> task) {
-                Log.d("RANDOM", "Function oncomplete ");
-                //initializing location
-                Location location = task.getResult();
-
-                Double latitude=location.getLatitude();
-                Double longitude=location.getLongitude();
-                Log.d("RANDOM", "Function location ");
-                if (location != null) {
-                    Log.d("RANDOM", "Latitude: " + Double.toString(location.getLatitude()));
-                    Log.d("RANDOM", "Longitude" + Double.toString(location.getLongitude()));
-                }
-                SendPostReq(latitude, longitude);
-                Log.d("RANDOM", "Send Post Request function called");
-            }
-        });
-
-    }
-
-    public void SendPostReq(Double latitude, Double longitude){
-//        String postUrl = "http://10.197.1.213:8000/data/";
-//        String postUrl = "http://0.0.0.0:8000/data/";
-//        String postUrl = "http://192.168.137.1/data/";
-//        String postUrl = "http://127.0.0.1:8000/data/";
-
-//        String postUrl = "http://10.0.2.2:8000/data/";
-//        String postUrl = "http://0ec0-203-129-219-162.ngrok.io/data/";
-        String postUrl = "http://af42-14-139-150-66.ngrok.io/data/";
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-
+    private void getTime(){
+        Log.d("RANDOM", "getTime called ");
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
-
-        JSONObject postData = new JSONObject();
-        try {
-            postData.put("timestamp", formatter.format(date));
-            postData.put("longitude", Double.toString(longitude));
-            postData.put("latitude", Double.toString(latitude));
-            postData.put("user_id", "1234");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, postUrl,
-                postData, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                Log.d("RANDOM", "response recieved");
-                System.out.println(response);
-                try {
-                    Log.d("RANDOM", response.toString(4));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("RANDOM", error.toString());
-                Log.d("RANDOM", String.valueOf(error.networkResponse.statusCode));
-                Log.d("RANDOM", String.valueOf(error.getMessage()));
-                error.printStackTrace();
-            }
-        });
-
-        requestQueue.add(jsonObjectRequest);
-
+        Global.setTimeStamp(formatter.format(date));
     }
+
+    private void getLocation() {
+        Log.d("RANDOM", "getLoc called ");
+        Global.setLongitude(0.0);
+        Global.setLatitude(0.0);
+//
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            // TODO: Consider calling
+//            //    ActivityCompat#requestPermissions
+//            // here to request the missing permissions, and then overriding
+//            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//            //                                          int[] grantResults)
+//            // to handle the case where the user grants the permission. See the documentation
+//            // for ActivityCompat#requestPermissions for more details.
+//            return;
+//        }
+//
+//        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+//            @Override
+//
+//            public void onComplete(@NonNull Task<Location> task) {
+//                Log.d("RANDOM", "Function oncomplete ");
+//                //initializing location
+//                Location location = task.getResult();
+//
+//                Double latitude=location.getLatitude();
+//                Double longitude=location.getLongitude();
+//                Log.d("RANDOM", "Function location ");
+//                if (location != null) {
+//                    Log.d("RANDOM", "Latitude: " + Double.toString(location.getLatitude()));
+//                    Global.setLatitude(location.getLatitude());
+//                    Log.d("RANDOM", "Longitude" + Double.toString(location.getLongitude()));
+//                    Global.setLongitude(location.getLongitude());
+//                }
+//                Log.d("RANDOM", "Send Post Request function called");
+//            }
+//        });
+    }
+
+
+//    public String getStringImage(Bitmap bmp) {
+////        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+////        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+//
+//        return encodedImage;
+//
+//    }
 
     @Override
     protected void onStart() {

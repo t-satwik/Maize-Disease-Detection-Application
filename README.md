@@ -5,7 +5,7 @@
 ### Setup
 
 1. Download the Repository to your local machine <br>
-2. Create a Virtual Environment in the [Backend](./backend) folder with this command below <br>
+2. Create a Virtual Environment in the [Backend](./Backend) folder with this command below <br>
    `python -m venv venv`
 3. Activate the environment with this command <br>
    `.\venv\Scripts\activate`

@@ -7,10 +7,21 @@ import android.app.Activity;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.tensorflow.lite.Interpreter;
 import org.tensorflow.lite.support.common.FileUtil;
 import java.io.FileInputStream;
@@ -19,16 +30,16 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Dictionary;
+import java.util.Date;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
 public class ImageClickedActivity extends AppCompatActivity {
     String modelFile="MN.tflite";
+
     String label="labels1.txt";
     Interpreter tflite;
     private MappedByteBuffer tfliteModel;
@@ -39,11 +50,16 @@ public class ImageClickedActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Global.setCropType("Maize");
+        Log.d("RANDOM", "ImageClickedActivity called");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.image_clicked);
         textView = findViewById(R.id.textView);
         textView2 = findViewById(R.id.textView2);
         button = findViewById(R.id.button);
+
+
+
         try {
             tfliteModel = FileUtil.loadMappedFile(ImageClickedActivity.this, modelFile);
             labels = FileUtil.loadLabels(ImageClickedActivity.this,label);
@@ -96,7 +112,10 @@ public class ImageClickedActivity extends AppCompatActivity {
         System.out.println(disease[index]);
         textView.setBackgroundColor(65280);
         textView.setText("Predicted Class: "+disease[index]);
+        Log.d("RANDOM", "ImageClickedActivity called");
+        Global.setPredictedClass(disease[index]);
         textView2.setText("Probability : "+max);
+        SendPostReq();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -137,4 +156,60 @@ public class ImageClickedActivity extends AppCompatActivity {
         return byteBuffer;
     }
 
+
+
+    public void SendPostReq(){
+//        String postUrl = "http://10.197.1.213:8000/data/";
+//        String postUrl = "http://0.0.0.0:8000/data/";
+//        String postUrl = "http://192.168.137.1/data/";
+//        String postUrl = "http://127.0.0.1:8000/data/";
+
+//        String postUrl = "http://10.0.2.2:8000/data/";
+//        String postUrl = "http://0ec0-203-129-219-162.ngrok.io/data/";
+        String postUrl = "http://31c6-203-129-219-162.ngrok.io/data/";
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+//        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+//        Date date = new Date();
+//        Global.setTimeStamp(formatter.format(date));
+
+        JSONObject postData = new JSONObject();
+        try {
+            postData.put("time_stamp",  Global.getTimeStamp());
+            postData.put("latitude", Double.toString(Global.getLatitude()));
+            postData.put("longitude", Double.toString(Global.getLongitude()));
+            postData.put("user_id", Global.getUserID());
+            postData.put("encoded_image", Global.getEncodedImage());
+            postData.put("predicted_class", Global.getPredictedClass());
+            postData.put("crop_type", Global.getCropType());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, postUrl,
+                postData, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.d("RANDOM", "response received");
+                System.out.println(response);
+                try {
+                    Log.d("RANDOM", response.toString(4));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("RANDOM", error.toString());
+                Log.d("RANDOM", String.valueOf(error.networkResponse.statusCode));
+                Log.d("RANDOM", String.valueOf(error.getMessage()));
+                error.printStackTrace();
+            }
+        });
+
+        requestQueue.add(jsonObjectRequest);
+
+    }
 }
