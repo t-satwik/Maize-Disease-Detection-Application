@@ -112,9 +112,10 @@ public class ImageClickedActivity extends AppCompatActivity {
         System.out.println(disease[index]);
         textView.setBackgroundColor(65280);
         textView.setText("Predicted Class: "+disease[index]);
-        Log.d("RANDOM", "ImageClickedActivity called");
         Global.setPredictedClass(disease[index]);
+
         textView2.setText("Probability : "+max);
+        Log.d("RANDOM", "Send Post Request called");
         SendPostReq();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,7 +167,7 @@ public class ImageClickedActivity extends AppCompatActivity {
 
 //        String postUrl = "http://10.0.2.2:8000/data/";
 //        String postUrl = "http://0ec0-203-129-219-162.ngrok.io/data/";
-        String postUrl = "http://31c6-203-129-219-162.ngrok.io/data/";
+        String postUrl = "http://6aed-203-129-219-162.ngrok.io/data/";
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 

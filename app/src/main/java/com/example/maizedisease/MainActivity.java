@@ -129,48 +129,34 @@ public class MainActivity extends AppCompatActivity {
         Log.d("RANDOM", "getLoc called ");
         Global.setLongitude(0.0);
         Global.setLatitude(0.0);
-//
-//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            // TODO: Consider calling
-//            //    ActivityCompat#requestPermissions
-//            // here to request the missing permissions, and then overriding
-//            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-//            //                                          int[] grantResults)
-//            // to handle the case where the user grants the permission. See the documentation
-//            // for ActivityCompat#requestPermissions for more details.
-//            return;
-//        }
-//
-//        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
-//            @Override
-//
-//            public void onComplete(@NonNull Task<Location> task) {
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+
+        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+            @Override
+
+            public void onComplete(@NonNull Task<Location> task) {
 //                Log.d("RANDOM", "Function oncomplete ");
-//                //initializing location
-//                Location location = task.getResult();
-//
-//                Double latitude=location.getLatitude();
-//                Double longitude=location.getLongitude();
+                //initializing location
+                Location location = task.getResult();
+
+                Double latitude=location.getLatitude();
+                Double longitude=location.getLongitude();
 //                Log.d("RANDOM", "Function location ");
-//                if (location != null) {
-//                    Log.d("RANDOM", "Latitude: " + Double.toString(location.getLatitude()));
-//                    Global.setLatitude(location.getLatitude());
-//                    Log.d("RANDOM", "Longitude" + Double.toString(location.getLongitude()));
-//                    Global.setLongitude(location.getLongitude());
-//                }
-//                Log.d("RANDOM", "Send Post Request function called");
-//            }
-//        });
+                if (location != null) {
+                    Log.d("RANDOM", "Latitude: " + Double.toString(location.getLatitude()));
+                    Global.setLatitude(location.getLatitude());
+                    Log.d("RANDOM", "Longitude" + Double.toString(location.getLongitude()));
+                    Global.setLongitude(location.getLongitude());
+                }
+
+            }
+        });
     }
 
 
-//    public String getStringImage(Bitmap bmp) {
-////        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-////        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-//
-//        return encodedImage;
-//
-//    }
 
     @Override
     protected void onStart() {
