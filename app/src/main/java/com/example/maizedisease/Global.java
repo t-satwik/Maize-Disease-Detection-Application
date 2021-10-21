@@ -11,12 +11,19 @@ public class Global extends Application {
     public static Bitmap bitmap;
     public static byte[] capturedImage = new byte[0];
     public static double Latitude, Longitude;
-    public static String TimeStamp, UserID, PredictedClass, CropType;
+    public static String TimeStamp, UserName, PredictedClass, CropType, URL;
     public Global() {
         bitmap = null;
     }
 
 
+    public static void setURL(String u) {
+        Global.URL = u;
+    }
+
+    public static String getURL() {
+        return URL;
+    }
 
 
     public static void setCapturedImage(byte[] capturedImage) {
@@ -50,12 +57,12 @@ public class Global extends Application {
         return TimeStamp;
     }
 
-    public static void setUserId(String uid) {
-        Global.UserID = uid;
+    public static void setUserName(String uname) {
+        Global.UserName = uname;
     }
 
-    public static String getUserID() {
-        return UserID;
+    public static String getUserName() {
+        return UserName;
     }
     public static void setPredictedClass(String pc) {
         Global.PredictedClass = pc;
@@ -72,10 +79,7 @@ public class Global extends Application {
         return CropType;
     }
 
-//    public static void setEncodedImage() {
-//        Global.EncodedImage = Base64.encodeToString(capturedImage, Base64.DEFAULT);
-////        Log.d("RANDOM", EncodedImage);
-//    }
+
 
     public static String getEncodedImage() {
         return Base64.encodeToString(capturedImage, Base64.DEFAULT);

@@ -167,7 +167,7 @@ public class ImageClickedActivity extends AppCompatActivity {
 
 //        String postUrl = "http://10.0.2.2:8000/data/";
 //        String postUrl = "http://0ec0-203-129-219-162.ngrok.io/data/";
-        String postUrl = "http://6aed-203-129-219-162.ngrok.io/data/";
+        String postUrl = Global.getURL()+"SetData/";
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
@@ -180,7 +180,7 @@ public class ImageClickedActivity extends AppCompatActivity {
             postData.put("time_stamp",  Global.getTimeStamp());
             postData.put("latitude", Double.toString(Global.getLatitude()));
             postData.put("longitude", Double.toString(Global.getLongitude()));
-            postData.put("user_id", Global.getUserID());
+            postData.put("user_id", Global.getUserName());
             postData.put("encoded_image", Global.getEncodedImage());
             postData.put("predicted_class", Global.getPredictedClass());
             postData.put("crop_type", Global.getCropType());

@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
         cameraKitView = findViewById(R.id.camera);
         imageButton = findViewById(R.id.imageButton);
         imageView = findViewById(R.id.imageView);
-        Global.setUserId("1234");
 //        btLocation = findViewById(R.id.bt_loc);
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
