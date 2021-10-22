@@ -10,5 +10,6 @@ from maize_api.views import *
 urlpatterns = [
    path('SetData/', setData),
    path('UserLogin/', checkLogin), 
-   path('UserSignUp/', newSignup)
+   path('UserSignUp/', newSignup),
+   path('GetPastData/', getPastData)
 ]

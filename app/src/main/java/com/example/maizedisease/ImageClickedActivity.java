@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -46,7 +47,8 @@ public class ImageClickedActivity extends AppCompatActivity {
     private List<String> labels;
     String[] disease = {"Cercospora_Gray_leaf_spot","Common_rust_","Healthy","Northern_Leaf_Blight","Unhealthy"};
     TextView textView,textView2;
-    Button button;
+    Button button,btnPastData;
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +59,15 @@ public class ImageClickedActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView);
         textView2 = findViewById(R.id.textView2);
         button = findViewById(R.id.button);
+        btnPastData = findViewById(R.id.btnPastData);
 
-
+        btnPastData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("RANDOM", "PastDataActivity called");
+                startActivity(new Intent(ImageClickedActivity.this, PastDataActivity.class));
+            }
+        });
 
         try {
             tfliteModel = FileUtil.loadMappedFile(ImageClickedActivity.this, modelFile);
@@ -124,6 +133,7 @@ public class ImageClickedActivity extends AppCompatActivity {
             }
         });
     }
+
     protected int sizeOf(Bitmap data) {
         return data.getByteCount();
     }
@@ -180,7 +190,7 @@ public class ImageClickedActivity extends AppCompatActivity {
             postData.put("time_stamp",  Global.getTimeStamp());
             postData.put("latitude", Double.toString(Global.getLatitude()));
             postData.put("longitude", Double.toString(Global.getLongitude()));
-            postData.put("user_id", Global.getUserName());
+            postData.put("user_name", Global.getUserName());
             postData.put("encoded_image", Global.getEncodedImage());
             postData.put("predicted_class", Global.getPredictedClass());
             postData.put("crop_type", Global.getCropType());

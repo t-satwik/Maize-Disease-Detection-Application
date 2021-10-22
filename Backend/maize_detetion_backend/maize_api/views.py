@@ -19,7 +19,8 @@ def setData(request):
         time_stamp_str=str(data['time_stamp'])
         data_obj.latitude = data['latitude']
         data_obj.longitude = data['longitude']
-        data_obj.user_id = data['user_id']
+        user_obj=User.objects.filter(user_name=data['user_name'])
+        data_obj.user_name = user_obj[0]
         data_obj.predicted_class = data['predicted_class']
         data_obj.crop_type = data['crop_type']
 
@@ -38,7 +39,7 @@ def setData(request):
         user_name_str=user_name_str.replace(' ', '_')
         time_stamp_str=time_stamp_str.replace(':', '-')
 
-        imagePath=str('D:/Semester V/RnD/Backend/maize_detetion_backend/uploads/'+time_stamp_str+'_'+user_name_str+'.png')
+        imagePath=str('D:/Semester V/RnD/Backend/maize_detetion_backend/uploads/'+time_stamp_str+'_'+user_name_str+'_'+data['crop_type']+'.png')
 
         with open(imagePath, 'wb') as f:
             f.write(imgdata)
@@ -81,6 +82,28 @@ def newSignup(request):
         
         return Response({"message":"User Created"}, status=status.HTTP_200_OK )
 
+    except Exception:
+        print(sys.exc_info())
+        return Response({"message":"Bad Request - python Exception"}, status=status.HTTP_400_BAD_REQUEST )
+
+@api_view(['POST'])
+def getPastData(request):
+    try:
+        data = request.data
+        user_name = data['user_name']
+        user_data=Data.objects.filter(user_name__exact=user_name)
+        print(user_data)
+        Response_dict={"message":"Data Fetch Successful", "data_count":str(len(user_data))}
+        for i in range(len(user_data)):
+            Response_dict["data"+str(i)]={}
+            Response_dict["data"+str(i)]["time_stamp"]=user_data[i].time_stamp
+            Response_dict["data"+str(i)]["latitude"]=user_data[i].latitude
+            Response_dict["data"+str(i)]["longitude"]=user_data[i].longitude
+            Response_dict["data"+str(i)]["encoded_image"]=user_data[i].encoded_image
+            Response_dict["data"+str(i)]["predicted_class"]=user_data[i].predicted_class
+            Response_dict["data"+str(i)]["crop_type"]=user_data[i].crop_type
+
+        return Response(Response_dict, status=status.HTTP_200_OK )
     except Exception:
         print(sys.exc_info())
         return Response({"message":"Bad Request - python Exception"}, status=status.HTTP_400_BAD_REQUEST )

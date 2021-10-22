@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private CameraKitView cameraKitView;
     private ImageButton imageButton;
     private ImageView imageView;
-    private Button btLocation;
+    private Button btnPastData;
     FusedLocationProviderClient fusedLocationProviderClient;
 
     @Override
@@ -66,8 +66,16 @@ public class MainActivity extends AppCompatActivity {
         cameraKitView = findViewById(R.id.camera);
         imageButton = findViewById(R.id.imageButton);
         imageView = findViewById(R.id.imageView);
-//        btLocation = findViewById(R.id.bt_loc);
+        btnPastData = findViewById(R.id.btnPastData2);
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+
+        btnPastData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("RANDOM", "PastDataActivity called");
+                startActivity(new Intent(MainActivity.this, PastDataActivity.class));
+            }
+        });
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,26 +141,26 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
-            @Override
-
-            public void onComplete(@NonNull Task<Location> task) {
-//                Log.d("RANDOM", "Function oncomplete ");
-                //initializing location
-                Location location = task.getResult();
-
-                Double latitude=location.getLatitude();
-                Double longitude=location.getLongitude();
-//                Log.d("RANDOM", "Function location ");
-                if (location != null) {
-                    Log.d("RANDOM", "Latitude: " + Double.toString(location.getLatitude()));
-                    Global.setLatitude(location.getLatitude());
-                    Log.d("RANDOM", "Longitude" + Double.toString(location.getLongitude()));
-                    Global.setLongitude(location.getLongitude());
-                }
-
-            }
-        });
+//        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+//            @Override
+//
+//            public void onComplete(@NonNull Task<Location> task) {
+////                Log.d("RANDOM", "Function oncomplete ");
+//                //initializing location
+//                Location location = task.getResult();
+//
+//                Double latitude=location.getLatitude();
+//                Double longitude=location.getLongitude();
+////                Log.d("RANDOM", "Function location ");
+//                if (location != null) {
+//                    Log.d("RANDOM", "Latitude: " + Double.toString(location.getLatitude()));
+//                    Global.setLatitude(location.getLatitude());
+//                    Log.d("RANDOM", "Longitude" + Double.toString(location.getLongitude()));
+//                    Global.setLongitude(location.getLongitude());
+//                }
+//
+//            }
+//        });
     }
 
 
