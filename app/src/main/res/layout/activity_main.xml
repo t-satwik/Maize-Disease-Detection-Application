@@ -45,5 +45,11 @@
         android:layout_height="80dp"
         app:srcCompat="@android:drawable/ic_menu_gallery" />
 
+    <Button
+        android:id="@+id/recordVideoBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Record Video" />
+
 
 </LinearLayout>

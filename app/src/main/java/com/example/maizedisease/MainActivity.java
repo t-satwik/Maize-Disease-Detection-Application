@@ -1,6 +1,7 @@
 package com.example.maizedisease;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -57,7 +58,12 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton imageButton;
     private ImageView imageView;
     private Button btnPastData;
+    private Button recordVideoBtn;
     FusedLocationProviderClient fusedLocationProviderClient;
+
+    private static int CAMERA_PERMISSION_CODE = 100;
+    private static int VIDEO_RECORD_CODE = 101;
+    private Uri videoPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,13 +73,31 @@ public class MainActivity extends AppCompatActivity {
         imageButton = findViewById(R.id.imageButton);
         imageView = findViewById(R.id.imageView);
         btnPastData = findViewById(R.id.btnPastData2);
+        recordVideoBtn = findViewById(R.id.recordVideoBtn);
+
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+
+        if(isCameraPresentInPhone()){
+            Log.d("RANDOM", "Camera is detected");
+            getCameraPermission();
+        }
+        else{
+            Log.d("RANDOM", "Camera is not detected");
+        }
+        
+        recordVideoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Log.d("RANDOM", "Record Video btn pressed");
+                recordVideo();
+            }
+        });
 
         btnPastData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("RANDOM", "PastDataActivity called");
-                startActivity(new Intent(MainActivity.this, PastDataActivity.class));
+                SendPastDataReq();
             }
         });
 
@@ -125,6 +149,36 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    private void recordVideo(){
+        Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+        intent.putExtra("android.intent.extra.durationLimit", 30);
+//        intent.putExtra("EXTRA_VIDEO_QUALITY", 0);
+//        intent.putExtra("MediaStore.EXTRA_DURATION_LIMIT", 30);
+//        intent.putExtra("MediaStore.EXTRA_VIDEO_QUALITY",0);
+//        intent.putExtra("MediaStore.EXTRA_DURATION_LIMIT",10);
+        startActivityForResult(intent, VIDEO_RECORD_CODE);
+    }
+
+
+    private void getCameraPermission(){
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                ==PackageManager.PERMISSION_DENIED){
+            ActivityCompat.requestPermissions(this, new String[]
+                    {Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE);
+        }
+    }
+    private boolean isCameraPresentInPhone() {
+        if (getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+
+
     private void getTime(){
         Log.d("RANDOM", "getTime called ");
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -141,29 +195,103 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-//        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
-//            @Override
-//
-//            public void onComplete(@NonNull Task<Location> task) {
-////                Log.d("RANDOM", "Function oncomplete ");
-//                //initializing location
-//                Location location = task.getResult();
-//
-//                Double latitude=location.getLatitude();
-//                Double longitude=location.getLongitude();
-////                Log.d("RANDOM", "Function location ");
-//                if (location != null) {
-//                    Log.d("RANDOM", "Latitude: " + Double.toString(location.getLatitude()));
-//                    Global.setLatitude(location.getLatitude());
-//                    Log.d("RANDOM", "Longitude" + Double.toString(location.getLongitude()));
-//                    Global.setLongitude(location.getLongitude());
-//                }
-//
-//            }
-//        });
+        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+            @Override
+
+            public void onComplete(@NonNull Task<Location> task) {
+//                Log.d("RANDOM", "Function oncomplete ");
+                //initializing location
+                Location location = task.getResult();
+
+                Double latitude=location.getLatitude();
+                Double longitude=location.getLongitude();
+//                Log.d("RANDOM", "Function location ");
+                if (location != null) {
+                    Log.d("RANDOM", "Latitude: " + Double.toString(location.getLatitude()));
+                    Global.setLatitude(location.getLatitude());
+                    Log.d("RANDOM", "Longitude" + Double.toString(location.getLongitude()));
+                    Global.setLongitude(location.getLongitude());
+                }
+
+            }
+        });
     }
 
+    public void SendPastDataReq(){
+        Log.d("RANDOM", "SendPastDataReq called");
+//        dataModelArrayList = new ArrayList<>();
+//        dataModelArrayList.add(new DataModel("", "Northern_Leaf_Blight", "22/10/2021 16:06:16", "Maize", 0.0, 0.0));
+        String postUrl = Global.getURL()+"GetPastData/";
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        JSONObject postData = new JSONObject();
 
+        String user_name=Global.getUserName();
+        try {
+            postData.put("user_name",  user_name);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Log.d("RANDOM", "user_name="+user_name);
+
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, postUrl,
+                postData, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.d("RANDOM", "response received");
+                try {
+                    if (response.getString("message") != "Data Fetch Successful") {
+                        int data_count=Integer.valueOf(response.getString("data_count"));
+                        Log.d("RANDOM", "data_count= "+Integer.toString(data_count));
+//                        Log.d("RANDOM", response.toString(4));
+
+                        for(int i=0; i<data_count; i++) {
+                            String time_stamp, encoded_image, crop_type, predicted_class;
+                            Double latitude, longitude;
+                            time_stamp = response.getJSONObject("data" + Integer.toString(i)).getString("time_stamp");
+                            encoded_image = response.getJSONObject("data" + Integer.toString(i)).getString("encoded_image");
+                            crop_type = response.getJSONObject("data" + Integer.toString(i)).getString("crop_type");
+                            latitude = response.getJSONObject("data" + Integer.toString(i)).getDouble("latitude");
+                            longitude = response.getJSONObject("data" + Integer.toString(i)).getDouble("longitude");
+                            predicted_class = response.getJSONObject("data" + Integer.toString(i)).getString("predicted_class");
+
+
+//                            dataModelArrayList.add(new DataModel(encoded_image, predicted_class, time_stamp, crop_type, latitude, longitude));
+//                            Log.d("RANDOM", "data model array list = "+dataModelArrayList.get(i).getCrop_type() );
+                            Log.d("RANDOM", "i= " + i + " " + time_stamp + crop_type + latitude + longitude + predicted_class);
+                        }
+                        Global.setPastDataResp(response);
+                        startActivity(new Intent(MainActivity.this, PastDataActivity.class));
+//                        Log.d("RANDOM", Global.getPastDataResp().toString());
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(),
+                                "Error", Toast.LENGTH_LONG).show();
+//                        Global.setPastDataResp(response);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("RANDOM", error.toString());
+                Log.d("RANDOM", String.valueOf(error.networkResponse.statusCode));
+                if(String.valueOf(error.networkResponse.statusCode).equals("401") || String.valueOf(error.networkResponse.statusCode).equals("400")){
+                    Toast.makeText(getApplicationContext(),
+                            "Error in request", Toast.LENGTH_LONG).show();
+                }
+                Log.d("RANDOM", String.valueOf(error.getMessage()));
+                error.printStackTrace();
+            }
+        });
+        requestQueue.add(jsonObjectRequest);
+
+        Log.d("RANDOM", "Request function exited");
+    }
 
     @Override
     protected void onStart() {
@@ -210,5 +338,20 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Toast.makeText(MainActivity.this, "You have not selected and image", Toast.LENGTH_SHORT).show();
         }
+
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==VIDEO_RECORD_CODE){
+            if(resultCode==RESULT_OK){
+                videoPath = data.getData();
+                Log.d("RANDOM", "Video is Recorded at "+ videoPath);
+            }
+            else if(resultCode==RESULT_CANCELED){
+                Log.i("RANDOM", "VIDEO is cancelled");
+            }
+            else{
+                Log.i("RANDOM", "Error");
+            }
+        }
+
     }
 }

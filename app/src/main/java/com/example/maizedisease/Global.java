@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.util.Base64;
 import android.util.Log;
 
+import org.json.JSONObject;
+
 import java.nio.ByteBuffer;
 import java.sql.Time;
 
@@ -12,10 +14,13 @@ public class Global extends Application {
     public static byte[] capturedImage = new byte[0];
     public static double Latitude, Longitude;
     public static String TimeStamp, UserName, PredictedClass, CropType, URL;
+    public static JSONObject PastDataResp=null;
     public Global() {
         bitmap = null;
     }
 
+    public  static  void setPastDataResp(JSONObject resp){ Global.PastDataResp=resp;}
+    public static  JSONObject getPastDataResp() { return PastDataResp;}
 
     public static void setURL(String u) {
         Global.URL = u;
