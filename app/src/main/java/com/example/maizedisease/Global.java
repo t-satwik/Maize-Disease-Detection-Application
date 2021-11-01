@@ -6,14 +6,16 @@ import android.util.Log;
 
 import org.json.JSONObject;
 
+import android.net.Uri;
 import java.nio.ByteBuffer;
 import java.sql.Time;
 
 public class Global extends Application {
     public static Bitmap bitmap;
     public static byte[] capturedImage = new byte[0];
-    public static double Latitude, Longitude;
+    public static double Latitude, Longitude, EndLatitude, EndLongitude;
     public static String TimeStamp, UserName, PredictedClass, CropType, URL;
+    public static Uri VideoURI;
     public static JSONObject PastDataResp=null;
     public Global() {
         bitmap = null;
@@ -96,5 +98,20 @@ public class Global extends Application {
 
     public static void setBitmap(Bitmap bitmap) {
         Global.bitmap = bitmap;
+    }
+
+    public static void setEndLongitude(double v) {
+        EndLatitude=v;
+    }
+
+    public static void setEndLatitude(double v) {
+        EndLongitude=v;
+    }
+    public static void setVideoURI(Uri s){
+        VideoURI=s;
+    }
+
+    public static Uri getVideoURI() {
+        return VideoURI;
     }
 }

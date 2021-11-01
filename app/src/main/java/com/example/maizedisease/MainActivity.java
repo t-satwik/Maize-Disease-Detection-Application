@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                Log.d("RANDOM", "Record Video btn pressed");
+                getLocation();
                 recordVideo();
             }
         });
@@ -151,8 +152,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void recordVideo(){
+        Log.d("RANDOM", "Record Video called");
         Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-        intent.putExtra("android.intent.extra.durationLimit", 30);
+//        intent.putExtra("android.intent.extra.durationLimit", 30);
 //        intent.putExtra("EXTRA_VIDEO_QUALITY", 0);
 //        intent.putExtra("MediaStore.EXTRA_DURATION_LIMIT", 30);
 //        intent.putExtra("MediaStore.EXTRA_VIDEO_QUALITY",0);
@@ -191,30 +193,63 @@ public class MainActivity extends AppCompatActivity {
         Global.setLongitude(0.0);
         Global.setLatitude(0.0);
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            return;
+//        }
+//
+//        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+//            @Override
+//
+//            public void onComplete(@NonNull Task<Location> task) {
+////                Log.d("RANDOM", "Function oncomplete ");
+//                //initializing location
+//                Location location = task.getResult();
+//
+//                Double latitude=location.getLatitude();
+//                Double longitude=location.getLongitude();
+////                Log.d("RANDOM", "Function location ");
+//                if (location != null) {
+//                    Log.d("RANDOM", "Latitude: " + Double.toString(location.getLatitude()));
+//                    Global.setLatitude(location.getLatitude());
+//                    Log.d("RANDOM", "Longitude" + Double.toString(location.getLongitude()));
+//                    Global.setLongitude(location.getLongitude());
+//                }
+//                return;
+//
+//            }
+//        });
+    }
 
-        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
-            @Override
+    private void getEndLocation() {
+        Log.d("RANDOM", "getLoc called ");
+        Global.setEndLongitude(0.0);
+        Global.setEndLatitude(0.0);
 
-            public void onComplete(@NonNull Task<Location> task) {
-//                Log.d("RANDOM", "Function oncomplete ");
-                //initializing location
-                Location location = task.getResult();
-
-                Double latitude=location.getLatitude();
-                Double longitude=location.getLongitude();
-//                Log.d("RANDOM", "Function location ");
-                if (location != null) {
-                    Log.d("RANDOM", "Latitude: " + Double.toString(location.getLatitude()));
-                    Global.setLatitude(location.getLatitude());
-                    Log.d("RANDOM", "Longitude" + Double.toString(location.getLongitude()));
-                    Global.setLongitude(location.getLongitude());
-                }
-
-            }
-        });
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            return;
+//        }
+//
+//        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+//            @Override
+//
+//            public void onComplete(@NonNull Task<Location> task) {
+////                Log.d("RANDOM", "Function oncomplete ");
+//                //initializing location
+//                Location location = task.getResult();
+//
+//                Double latitude=location.getLatitude();
+//                Double longitude=location.getLongitude();
+////                Log.d("RANDOM", "Function location ");
+//                if (location != null) {
+//                    Log.d("RANDOM", "Latitude: " + Double.toString(location.getLatitude()));
+//                    Global.setEndLatitude(location.getLatitude());
+//                    Log.d("RANDOM", "Longitude" + Double.toString(location.getLongitude()));
+//                    Global.setEndLongitude(location.getLongitude());
+//                }
+//                return;
+//
+//            }
+//        });
     }
 
     public void SendPastDataReq(){
@@ -335,22 +370,29 @@ public class MainActivity extends AppCompatActivity {
             Bitmap resized = Bitmap.createScaledBitmap(bitmap, 224, 224, true);
             Global.setBitmap(resized);
             startActivity(new Intent(MainActivity.this, ImageClickedActivity.class));
-        } else {
-            Toast.makeText(MainActivity.this, "You have not selected and image", Toast.LENGTH_SHORT).show();
         }
-
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==VIDEO_RECORD_CODE){
             if(resultCode==RESULT_OK){
                 videoPath = data.getData();
+                getEndLocation();
+                Log.d("RANDOM", "VideoResultsActivity called");
+                Uri selectedImageURI = data.getData();
+                Global.setVideoURI(selectedImageURI);
+
+                startActivity(new Intent(MainActivity.this, VideoResultsActivity.class));
                 Log.d("RANDOM", "Video is Recorded at "+ videoPath);
             }
+
             else if(resultCode==RESULT_CANCELED){
-                Log.i("RANDOM", "VIDEO is cancelled");
+                Log.d("RANDOM", "VIDEO is cancelled");
             }
             else{
-                Log.i("RANDOM", "Error");
+                Log.d("RANDOM", "Error");
             }
+        }
+        else {
+            Toast.makeText(MainActivity.this, "You have not selected and image", Toast.LENGTH_SHORT).show();
         }
 
     }
