@@ -362,7 +362,7 @@ public class MainActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 152 && resultCode == RESULT_OK && null !=data){
+        if (requestCode == 152 && resultCode == RESULT_OK && null !=data){ // Gallery
             Uri selectedImageUri = data.getData();
             imageView.setImageURI(selectedImageUri);
             Drawable drawable =  imageView.getDrawable();
@@ -377,8 +377,8 @@ public class MainActivity extends AppCompatActivity {
                 videoPath = data.getData();
                 getEndLocation();
                 Log.d("RANDOM", "VideoResultsActivity called");
-                Uri selectedImageURI = data.getData();
-                Global.setVideoURI(selectedImageURI);
+                Uri VideoURI = data.getData();
+                Global.setVideoURI(VideoURI);
 
                 startActivity(new Intent(MainActivity.this, VideoResultsActivity.class));
                 Log.d("RANDOM", "Video is Recorded at "+ videoPath);

@@ -5,7 +5,7 @@
         <domain includeSubdomains="true">10.197.1.213</domain>
         <domain includeSubdomains="true">0.0.0.0</domain>
         <domain includeSubdomains="true">192.168.137.1</domain>
-        <domain includeSubdomains="true">3a06-203-129-219-162.ngrok.io</domain>
-        <domain includeSubdomains="true">1972-203-129-219-162.ngrok.io</domain>
+        <domain includeSubdomains="true">9e5d-203-129-219-162.ngrok.io</domain>
+        <domain includeSubdomains="true">c679-203-129-219-162.ngrok.io</domain>
     </domain-config>
 </network-security-config>
