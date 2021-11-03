@@ -9,8 +9,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.maizedisease.DataModel;
-
 import java.util.ArrayList;
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.Viewholder> {
@@ -57,9 +55,9 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.Viewholder> {
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);
-            rec_imageIV = itemView.findViewById(R.id.rec_image);
-            time_stampTV = itemView.findViewById(R.id.time_stamp);
-            predicted_classTV = itemView.findViewById(R.id.predicted_class);
+            rec_imageIV = itemView.findViewById(R.id.rec_frameFP);
+            time_stampTV = itemView.findViewById(R.id.predicted_classFp);
+            predicted_classTV = itemView.findViewById(R.id.probabiltyFp);
             crop_typeTV = itemView.findViewById(R.id.crop_type);
             latitudeTV = itemView.findViewById(R.id.latitude);
             longitudeTV = itemView.findViewById(R.id.longitude);

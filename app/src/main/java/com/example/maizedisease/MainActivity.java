@@ -154,7 +154,8 @@ public class MainActivity extends AppCompatActivity {
     private void recordVideo(){
         Log.d("RANDOM", "Record Video called");
         Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-//        intent.putExtra("android.intent.extra.durationLimit", 30);
+        intent.putExtra("android.intent.extra.durationLimit", 30);
+
 //        intent.putExtra("EXTRA_VIDEO_QUALITY", 0);
 //        intent.putExtra("MediaStore.EXTRA_DURATION_LIMIT", 30);
 //        intent.putExtra("MediaStore.EXTRA_VIDEO_QUALITY",0);
@@ -193,31 +194,31 @@ public class MainActivity extends AppCompatActivity {
         Global.setLongitude(0.0);
         Global.setLatitude(0.0);
 
-//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            return;
-//        }
-//
-//        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
-//            @Override
-//
-//            public void onComplete(@NonNull Task<Location> task) {
-////                Log.d("RANDOM", "Function oncomplete ");
-//                //initializing location
-//                Location location = task.getResult();
-//
-//                Double latitude=location.getLatitude();
-//                Double longitude=location.getLongitude();
-////                Log.d("RANDOM", "Function location ");
-//                if (location != null) {
-//                    Log.d("RANDOM", "Latitude: " + Double.toString(location.getLatitude()));
-//                    Global.setLatitude(location.getLatitude());
-//                    Log.d("RANDOM", "Longitude" + Double.toString(location.getLongitude()));
-//                    Global.setLongitude(location.getLongitude());
-//                }
-//                return;
-//
-//            }
-//        });
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+
+        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+            @Override
+
+            public void onComplete(@NonNull Task<Location> task) {
+//                Log.d("RANDOM", "Function oncomplete ");
+                //initializing location
+                Location location = task.getResult();
+
+                Double latitude=location.getLatitude();
+                Double longitude=location.getLongitude();
+//                Log.d("RANDOM", "Function location ");
+                if (location != null) {
+                    Log.d("RANDOM", "Latitude: " + Double.toString(location.getLatitude()));
+                    Global.setLatitude(location.getLatitude());
+                    Log.d("RANDOM", "Longitude" + Double.toString(location.getLongitude()));
+                    Global.setLongitude(location.getLongitude());
+                }
+                return;
+
+            }
+        });
     }
 
     private void getEndLocation() {
@@ -225,31 +226,31 @@ public class MainActivity extends AppCompatActivity {
         Global.setEndLongitude(0.0);
         Global.setEndLatitude(0.0);
 
-//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            return;
-//        }
-//
-//        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
-//            @Override
-//
-//            public void onComplete(@NonNull Task<Location> task) {
-////                Log.d("RANDOM", "Function oncomplete ");
-//                //initializing location
-//                Location location = task.getResult();
-//
-//                Double latitude=location.getLatitude();
-//                Double longitude=location.getLongitude();
-////                Log.d("RANDOM", "Function location ");
-//                if (location != null) {
-//                    Log.d("RANDOM", "Latitude: " + Double.toString(location.getLatitude()));
-//                    Global.setEndLatitude(location.getLatitude());
-//                    Log.d("RANDOM", "Longitude" + Double.toString(location.getLongitude()));
-//                    Global.setEndLongitude(location.getLongitude());
-//                }
-//                return;
-//
-//            }
-//        });
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+
+        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+            @Override
+
+            public void onComplete(@NonNull Task<Location> task) {
+//                Log.d("RANDOM", "Function oncomplete ");
+                //initializing location
+                Location location = task.getResult();
+
+                Double latitude=location.getLatitude();
+                Double longitude=location.getLongitude();
+//                Log.d("RANDOM", "Function location ");
+                if (location != null) {
+                    Log.d("RANDOM", "Latitude: " + Double.toString(location.getLatitude()));
+                    Global.setEndLatitude(location.getLatitude());
+                    Log.d("RANDOM", "Longitude" + Double.toString(location.getLongitude()));
+                    Global.setEndLongitude(location.getLongitude());
+                }
+                return;
+
+            }
+        });
     }
 
     public void SendPastDataReq(){

@@ -31,7 +31,7 @@ public class LoginSignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_sign_up);
-        Global.setURL("http://c679-203-129-219-162.ngrok.io/data/");
+        Global.setURL("http://87f9-203-129-219-162.ngrok.io/data/");
 
         btnLogin = findViewById(R.id.loginBtn);
         etUserNameLogin = findViewById(R.id.userNameLoginET);

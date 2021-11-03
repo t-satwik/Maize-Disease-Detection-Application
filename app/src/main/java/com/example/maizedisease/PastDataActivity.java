@@ -28,7 +28,6 @@ public class PastDataActivity extends AppCompatActivity {
     Button mainActivityBtn;
     private RecyclerView dataRV;
     private ArrayList<DataModel> dataModelArrayList;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

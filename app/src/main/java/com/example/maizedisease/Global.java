@@ -104,6 +104,14 @@ public class Global extends Application {
         EndLatitude=v;
     }
 
+    public static double getEndLatitude() {
+        return EndLatitude;
+    }
+
+    public static double getEndLongitude() {
+        return EndLongitude;
+    }
+
     public static void setEndLatitude(double v) {
         EndLongitude=v;
     }

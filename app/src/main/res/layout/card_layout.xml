@@ -20,7 +20,7 @@
 
         <!--Text View to display Course Name-->
         <ImageView
-            android:id="@+id/rec_image"
+            android:id="@+id/rec_frameFP"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginStart="10dp"
@@ -31,12 +31,12 @@
             android:padding="5dp" />
 
         <TextView
-            android:id="@+id/time_stamp"
+            android:id="@+id/predicted_classFp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:layout_toEndOf="@id/rec_image"
+            android:layout_toEndOf="@id/rec_frameFP"
             android:text="@string/time_stamp"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -44,13 +44,13 @@
         <!--Text VIew to display COurse Rating-->
         <!--Image used in present in drawable folder-->
         <TextView
-            android:id="@+id/predicted_class"
+            android:id="@+id/probabiltyFp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/time_stamp"
+            android:layout_below="@id/predicted_classFp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
-            android:layout_toEndOf="@id/rec_image"
+            android:layout_toEndOf="@id/rec_frameFP"
             android:drawablePadding="2dp"
             android:text="@string/predicted_class"
             android:textSize="18sp"
@@ -60,10 +60,10 @@
             android:id="@+id/crop_type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/predicted_class"
+            android:layout_below="@id/probabiltyFp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
-            android:layout_toEndOf="@id/rec_image"
+            android:layout_toEndOf="@id/rec_frameFP"
             android:drawablePadding="2dp"
             android:text="@string/crop_type"
             android:textSize="18sp"
@@ -76,7 +76,7 @@
             android:layout_below="@id/crop_type"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
-            android:layout_toEndOf="@id/rec_image"
+            android:layout_toEndOf="@id/rec_frameFP"
             android:drawablePadding="2dp"
             android:text="@string/latitude"
             android:textSize="18sp"
@@ -89,7 +89,7 @@
             android:layout_below="@id/latitude"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
-            android:layout_toEndOf="@id/rec_image"
+            android:layout_toEndOf="@id/rec_frameFP"
             android:drawablePadding="2dp"
             android:text="@string/longitude"
             android:textSize="18sp"
