@@ -5,6 +5,7 @@ from rest_framework import status
 from maize_api.models import Data
 from maize_api.models import User
 from maize_api.models import Admin
+from maize_api.models import VideoFrame
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
@@ -33,15 +34,12 @@ def setData(request):
 
         imgdata = base64.b64decode(encoded_image_str) 
         # filename = '{}_{}.png'.format(data['user_id'], data['time_stamp'])
-        time_stamp_str=time_stamp_str=str(data['time_stamp'])
-        time_stamp_str=time_stamp_str.replace('/', '-')
-        time_stamp_str=time_stamp_str.replace(' ', '_')
-        time_stamp_str=time_stamp_str.replace(':', '-')
+       
 
         user_name_str=str(data['user_name'])
         user_name_str=user_name_str.replace('/', '-')
         user_name_str=user_name_str.replace(' ', '_')
-        time_stamp_str=time_stamp_str.replace(':', '-')
+        user_name_str=user_name_str.replace(':', '-')
 
         imagePath=str('D:/Semester V/RnD/Backend/maize_detetion_backend/uploads/'+time_stamp_str+'_'+user_name_str+'_'+data['crop_type']+'.png')
 
@@ -55,6 +53,55 @@ def setData(request):
         print(sys.exc_info())
         return Response({"message":"Bad Request - python Exception"}, status=status.HTTP_400_BAD_REQUEST )
         # return Response({"message":'uploads/'+time_stamp_str+'_'+user_id_str+'.png'}, status=status.HTTP_400_BAD_REQUEST )
+
+@api_view(['POST'])
+def setVideoFrame(request):
+    try:
+        data = request.data
+        data_obj = VideoFrame()
+        data_obj.startLatitude = data['startLatitude']
+        data_obj.endLatitude = data['endLatitude']
+        data_obj.startLongitude = data['startLongitude']
+        data_obj.endLongitude = data['endLongitude']
+        data_obj.probability = data['probability']
+        
+        user_obj=User.objects.filter(user_name=data['user_name'])
+        data_obj.user_name = user_obj[0]
+        data_obj.predicted_class = data['predicted_class']
+        data_obj.crop_type = data['crop_type']
+
+        encoded_image_str=str(data['encoded_image'])
+        data_obj.encoded_image = encoded_image_str
+
+        imgdata = base64.b64decode(encoded_image_str) 
+        # filename = '{}_{}.png'.format(data['user_id'], data['time_stamp'])
+
+        user_name_str=str(data['user_name'])
+        user_name_str=user_name_str.replace('/', '-')
+        user_name_str=user_name_str.replace(' ', '_')
+        user_name_str=user_name_str.replace(':', '-')
+
+        time_stamp_str=time_stamp_str=str(data['time_stamp'])
+        data_obj.time_stamp=time_stamp_str
+        time_stamp_str=time_stamp_str.replace('/', '-')
+        time_stamp_str=time_stamp_str.replace(' ', '_')
+        time_stamp_str=time_stamp_str.replace(':', '-')
+
+        imagePath=str('D:/Semester V/RnD/Backend/maize_detetion_backend/uploads/videos/'+'video_'+time_stamp_str+'_'+user_name_str+'_'+data['crop_type']+'.png')
+
+        with open(imagePath, 'wb') as f:
+            f.write(imgdata)
+        data_obj.image_path=imagePath
+        data_obj.save()
+        return Response({"message":"Video Frame Saved"}, status=status.HTTP_200_OK )
+
+    except Exception:
+        print(sys.exc_info())
+        return Response({"message":"Bad Request - python Exception"}, status=status.HTTP_400_BAD_REQUEST )
+        # return Response({"message":'uploads/'+time_stamp_str+'_'+user_id_str+'.png'}, status=status.HTTP_400_BAD_REQUEST )
+
+
+
 
 @api_view(['POST'])
 def checkLogin(request):

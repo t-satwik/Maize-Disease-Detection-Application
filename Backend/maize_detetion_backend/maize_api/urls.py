@@ -12,6 +12,7 @@ urlpatterns = [
    path('UserLogin/', checkLogin), 
    path('UserSignUp/', newSignup),
    path('GetPastData/', getPastData),
+   path('SetVideoFrame/', setVideoFrame),
    path('developer/login', devLogin),
    path('developer/home', devHome)
 ]
