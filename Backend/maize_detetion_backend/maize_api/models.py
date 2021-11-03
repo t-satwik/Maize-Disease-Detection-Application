@@ -21,3 +21,8 @@ class Data(models.Model):
     predicted_class=models.TextField(null=True)
     image_path=models.TextField(null=True)
     crop_type=models.TextField(null=True)
+
+class Admin(models.Model):
+    user_name = models.CharField(blank=False, primary_key=True, max_length=100, default="default_name")
+    password = models.CharField(blank=True, null=True, max_length=150)
+    email = models.CharField(blank=False, null=True, max_length=100)

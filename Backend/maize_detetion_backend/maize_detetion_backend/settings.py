@@ -30,8 +30,8 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     '10.197.1.213',
     'localhost',
-    'de0b-203-129-219-162.ngrok.io',
-    'fa54-203-129-219-162.ngrok.io'
+    '075d-203-129-219-162.ngrok.io',
+    '9e5d-203-129-219-162.ngrok.io'
 ]
 
 
@@ -62,7 +62,7 @@ ROOT_URLCONF = 'maize_detetion_backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

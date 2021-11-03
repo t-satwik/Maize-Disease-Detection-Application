@@ -11,5 +11,7 @@ urlpatterns = [
    path('SetData/', setData),
    path('UserLogin/', checkLogin), 
    path('UserSignUp/', newSignup),
-   path('GetPastData/', getPastData)
+   path('GetPastData/', getPastData),
+   path('developer/login', devLogin),
+   path('developer/home', devHome)
 ]
