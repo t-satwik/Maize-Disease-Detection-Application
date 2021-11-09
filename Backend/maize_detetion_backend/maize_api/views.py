@@ -41,6 +41,12 @@ def setData(request):
         user_name_str=user_name_str.replace(' ', '_')
         user_name_str=user_name_str.replace(':', '-')
 
+        time_stamp_str=time_stamp_str=str(data['time_stamp'])
+        data_obj.time_stamp=time_stamp_str
+        time_stamp_str=time_stamp_str.replace('/', '-')
+        time_stamp_str=time_stamp_str.replace(' ', '_')
+        time_stamp_str=time_stamp_str.replace(':', '-')
+
         imagePath=str('D:/Semester V/RnD/Backend/maize_detetion_backend/uploads/'+time_stamp_str+'_'+user_name_str+'_'+data['crop_type']+'.png')
 
         with open(imagePath, 'wb') as f:
@@ -150,7 +156,7 @@ def getPastData(request):
             Response_dict["data"+str(i)]["time_stamp"]=user_data[i].time_stamp
             Response_dict["data"+str(i)]["latitude"]=user_data[i].latitude
             Response_dict["data"+str(i)]["longitude"]=user_data[i].longitude
-            Response_dict["data"+str(i)]["image_path"]=user_data[i].encoded_image
+            Response_dict["data"+str(i)]["encoded_image"]=user_data[i].encoded_image
             Response_dict["data"+str(i)]["predicted_class"]=user_data[i].predicted_class
             Response_dict["data"+str(i)]["crop_type"]=user_data[i].crop_type
 
