@@ -281,21 +281,15 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("RANDOM", "data_count= "+Integer.toString(data_count));
 //                        Log.d("RANDOM", response.toString(4));
 
-                        for(int i=0; i<data_count; i++) {
-                            String time_stamp, encoded_image, crop_type, predicted_class;
-                            Double latitude, longitude;
-                            time_stamp = response.getJSONObject("data" + Integer.toString(i)).getString("time_stamp");
-                            encoded_image = response.getJSONObject("data" + Integer.toString(i)).getString("encoded_image");
-                            crop_type = response.getJSONObject("data" + Integer.toString(i)).getString("crop_type");
-                            latitude = response.getJSONObject("data" + Integer.toString(i)).getDouble("latitude");
-                            longitude = response.getJSONObject("data" + Integer.toString(i)).getDouble("longitude");
-                            predicted_class = response.getJSONObject("data" + Integer.toString(i)).getString("predicted_class");
-
-
-//                            dataModelArrayList.add(new DataModel(encoded_image, predicted_class, time_stamp, crop_type, latitude, longitude));
-//                            Log.d("RANDOM", "data model array list = "+dataModelArrayList.get(i).getCrop_type() );
-                            Log.d("RANDOM", "i= " + i + " " + time_stamp + crop_type + latitude + longitude + predicted_class);
-                        }
+//                        for(int i=0; i<data_count; i++) {
+//
+//
+//
+//
+////                            dataModelArrayList.add(new DataModel(encoded_image, predicted_class, time_stamp, crop_type, latitude, longitude));
+////                            Log.d("RANDOM", "data model array list = "+dataModelArrayList.get(i).getCrop_type() );
+////                            Log.d("RANDOM", "i= " + i + " " + time_stamp + crop_type + latitude + longitude + predicted_class);
+//                        }
                         Global.setPastDataResp(response);
                         startActivity(new Intent(MainActivity.this, PastDataActivity.class));
 //                        Log.d("RANDOM", Global.getPastDataResp().toString());

@@ -171,13 +171,7 @@ public class ImageClickedActivity extends AppCompatActivity {
 
 
     public void SendPostReq(){
-//        String postUrl = "http://10.197.1.213:8000/data/";
-//        String postUrl = "http://0.0.0.0:8000/data/";
-//        String postUrl = "http://192.168.137.1/data/";
-//        String postUrl = "http://127.0.0.1:8000/data/";
 
-//        String postUrl = "http://10.0.2.2:8000/data/";
-//        String postUrl = "http://0ec0-203-129-219-162.ngrok.io/data/";
         String postUrl = Global.getURL()+"SetData/";
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -206,10 +200,23 @@ public class ImageClickedActivity extends AppCompatActivity {
                 Log.d("RANDOM", "response received");
                 System.out.println(response);
                 try {
-                    Log.d("RANDOM", response.toString(4));
+                    if (response.getString("message") != "Data Sent") {
+                        Toast.makeText(getApplicationContext(),
+                                "Data is sent to server", Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(),
+                                "Request Failed", Toast.LENGTH_LONG).show();
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+//                try {
+//                    Log.d("RANDOM", response.toString(4));
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -217,7 +224,7 @@ public class ImageClickedActivity extends AppCompatActivity {
                 Log.d("RANDOM", error.toString());
                 Log.d("RANDOM", String.valueOf(error.networkResponse.statusCode));
                 Log.d("RANDOM", String.valueOf(error.getMessage()));
-                error.printStackTrace();
+//                error.printStackTrace();
             }
         });
 

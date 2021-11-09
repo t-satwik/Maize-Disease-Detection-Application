@@ -310,7 +310,7 @@ public class VideoResultsActivity extends AppCompatActivity {
 
         Log.d("RANDOM", "Duration in milliseconds"+timeInMilliSec);
         ArrayList<Bitmap> frames = new ArrayList<Bitmap>();
-
+        timeInMilliSec=5000;
         for (int i = 0; i < timeInMilliSec*1000; i += 500000) {           //Loop for every half second, i.e 2 frames per second
             Bitmap bmp = retriever.getFrameAtTime(i);
             if(bmp!=null){
