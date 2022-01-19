@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">MaizeDisease</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_user_name">User Name</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_confirm_password">Confirm Password</string>
+    <string name="prompt_email">Email</string>
+    <string name="action_log_in">Log In</string>
+    <string name="action_sign_up">Sign up</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password do not match</string>
+    <string name="login_failed">"Login failed"</string>
+
+    <string name="time_stamp">default</string>
+    <string name="crop_type">default</string>
+    <string name="latitude">default</string>
+    <string name="longitude">default</string>
+    <string name="predicted_class">default</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoidC1zYXR3aWsiLCJhIjoiY2t2OTNmZjU2MDlqeTJudGM1Y3oxZzlxciJ9.pAHzfIvuXZDJEdWppZ8SLw</string>
+</resources>
