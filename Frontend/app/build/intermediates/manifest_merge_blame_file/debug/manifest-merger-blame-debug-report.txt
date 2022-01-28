@@ -1,0 +1,250 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.maizedisease"
+4    android:requestLegacyExternalStorage="true"
+5    android:targetSandboxVersion="1"
+6    android:versionCode="1"
+7    android:versionName="1.0" >
+8
+9    <uses-sdk
+10        android:minSdkVersion="28"
+10-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml
+11        android:targetSdkVersion="31" />
+11-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml
+12
+13    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+13-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:7:5-81
+13-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:7:22-78
+14    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+14-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:8:5-79
+14-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:8:22-76
+15    <uses-permission android:name="android.permission.CAMERA" />
+15-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:9:5-65
+15-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:9:22-62
+16    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+16-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:10:5-81
+16-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:10:22-78
+17    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+17-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:11:5-80
+17-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:11:22-77
+18    <uses-permission android:name="android.permission.INTERNET" />
+18-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:12:5-67
+18-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:12:22-64
+19
+20    <uses-feature
+20-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:14:5-16:35
+21        android:name="android.hardware.camera"
+21-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:15:9-47
+22        android:required="true" />
+22-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:16:9-32
+23    <uses-feature
+23-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.6.6] C:\Users\Satwik's PC\.gradle\caches\transforms-3\0c18ad6c5c18ccab44667b239e92813f\transformed\jetified-mapbox-android-sdk-8.6.6\AndroidManifest.xml:9:5-11:35
+24        android:glEsVersion="0x00020000"
+24-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.6.6] C:\Users\Satwik's PC\.gradle\caches\transforms-3\0c18ad6c5c18ccab44667b239e92813f\transformed\jetified-mapbox-android-sdk-8.6.6\AndroidManifest.xml:10:9-41
+25        android:required="true" />
+25-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.6.6] C:\Users\Satwik's PC\.gradle\caches\transforms-3\0c18ad6c5c18ccab44667b239e92813f\transformed\jetified-mapbox-android-sdk-8.6.6\AndroidManifest.xml:11:9-32
+26    <uses-feature
+26-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.6.6] C:\Users\Satwik's PC\.gradle\caches\transforms-3\0c18ad6c5c18ccab44667b239e92813f\transformed\jetified-mapbox-android-sdk-8.6.6\AndroidManifest.xml:12:5-14:36
+27        android:name="android.hardware.wifi"
+27-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.6.6] C:\Users\Satwik's PC\.gradle\caches\transforms-3\0c18ad6c5c18ccab44667b239e92813f\transformed\jetified-mapbox-android-sdk-8.6.6\AndroidManifest.xml:13:9-45
+28        android:required="false" />
+28-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.6.6] C:\Users\Satwik's PC\.gradle\caches\transforms-3\0c18ad6c5c18ccab44667b239e92813f\transformed\jetified-mapbox-android-sdk-8.6.6\AndroidManifest.xml:14:9-33
+29
+30    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+30-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.6.6] C:\Users\Satwik's PC\.gradle\caches\transforms-3\0c18ad6c5c18ccab44667b239e92813f\transformed\jetified-mapbox-android-sdk-8.6.6\AndroidManifest.xml:17:5-79
+30-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.6.6] C:\Users\Satwik's PC\.gradle\caches\transforms-3\0c18ad6c5c18ccab44667b239e92813f\transformed\jetified-mapbox-android-sdk-8.6.6\AndroidManifest.xml:17:22-76
+31    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- Required for CrashReporterJobIntentService on API levels below 25 -->
+31-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.6.6] C:\Users\Satwik's PC\.gradle\caches\transforms-3\0c18ad6c5c18ccab44667b239e92813f\transformed\jetified-mapbox-android-sdk-8.6.6\AndroidManifest.xml:18:5-76
+31-->[com.mapbox.mapboxsdk:mapbox-android-sdk:8.6.6] C:\Users\Satwik's PC\.gradle\caches\transforms-3\0c18ad6c5c18ccab44667b239e92813f\transformed\jetified-mapbox-android-sdk-8.6.6\AndroidManifest.xml:18:22-73
+32    <uses-permission android:name="android.permission.WAKE_LOCK" />
+32-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:8.1.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\d44f9d1b12a685342b41cf73fe54e262\transformed\jetified-mapbox-android-telemetry-8.1.0\AndroidManifest.xml:12:5-68
+32-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:8.1.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\d44f9d1b12a685342b41cf73fe54e262\transformed\jetified-mapbox-android-telemetry-8.1.0\AndroidManifest.xml:12:22-65
+33    <uses-permission
+33-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:8.1.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\d44f9d1b12a685342b41cf73fe54e262\transformed\jetified-mapbox-android-telemetry-8.1.0\AndroidManifest.xml:16:5-18:38
+34        android:name="android.permission.GET_TASKS"
+34-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:8.1.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\d44f9d1b12a685342b41cf73fe54e262\transformed\jetified-mapbox-android-telemetry-8.1.0\AndroidManifest.xml:17:9-52
+35        android:maxSdkVersion="20" />
+35-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:8.1.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\d44f9d1b12a685342b41cf73fe54e262\transformed\jetified-mapbox-android-telemetry-8.1.0\AndroidManifest.xml:18:9-35
+36    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+36-->[com.mapbox.common:okhttp:21.0.1] C:\Users\Satwik's PC\.gradle\caches\transforms-3\c97289caa40135b0cc5556b361ffa6c9\transformed\jetified-okhttp-21.0.1\AndroidManifest.xml:9:5-79
+36-->[com.mapbox.common:okhttp:21.0.1] C:\Users\Satwik's PC\.gradle\caches\transforms-3\c97289caa40135b0cc5556b361ffa6c9\transformed\jetified-okhttp-21.0.1\AndroidManifest.xml:9:22-76
+37    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+37-->[com.camerakit:camerakit:1.0.0-beta3.11] C:\Users\Satwik's PC\.gradle\caches\transforms-3\b4acea2496a85769a4bb0d760bff270c\transformed\jetified-camerakit-1.0.0-beta3.11\AndroidManifest.xml:8:5-71
+37-->[com.camerakit:camerakit:1.0.0-beta3.11] C:\Users\Satwik's PC\.gradle\caches\transforms-3\b4acea2496a85769a4bb0d760bff270c\transformed\jetified-camerakit-1.0.0-beta3.11\AndroidManifest.xml:8:22-68
+38
+39    <uses-feature
+39-->[com.camerakit:camerakit:1.0.0-beta3.11] C:\Users\Satwik's PC\.gradle\caches\transforms-3\b4acea2496a85769a4bb0d760bff270c\transformed\jetified-camerakit-1.0.0-beta3.11\AndroidManifest.xml:14:5-16:36
+40        android:name="android.hardware.camera.front"
+40-->[com.camerakit:camerakit:1.0.0-beta3.11] C:\Users\Satwik's PC\.gradle\caches\transforms-3\b4acea2496a85769a4bb0d760bff270c\transformed\jetified-camerakit-1.0.0-beta3.11\AndroidManifest.xml:15:9-53
+41        android:required="false" />
+41-->[com.camerakit:camerakit:1.0.0-beta3.11] C:\Users\Satwik's PC\.gradle\caches\transforms-3\b4acea2496a85769a4bb0d760bff270c\transformed\jetified-camerakit-1.0.0-beta3.11\AndroidManifest.xml:16:9-33
+42    <uses-feature
+42-->[com.camerakit:camerakit:1.0.0-beta3.11] C:\Users\Satwik's PC\.gradle\caches\transforms-3\b4acea2496a85769a4bb0d760bff270c\transformed\jetified-camerakit-1.0.0-beta3.11\AndroidManifest.xml:17:5-19:36
+43        android:name="android.hardware.camera.autofocus"
+43-->[com.camerakit:camerakit:1.0.0-beta3.11] C:\Users\Satwik's PC\.gradle\caches\transforms-3\b4acea2496a85769a4bb0d760bff270c\transformed\jetified-camerakit-1.0.0-beta3.11\AndroidManifest.xml:18:9-57
+44        android:required="false" />
+44-->[com.camerakit:camerakit:1.0.0-beta3.11] C:\Users\Satwik's PC\.gradle\caches\transforms-3\b4acea2496a85769a4bb0d760bff270c\transformed\jetified-camerakit-1.0.0-beta3.11\AndroidManifest.xml:19:9-33
+45    <uses-feature
+45-->[com.camerakit:camerakit:1.0.0-beta3.11] C:\Users\Satwik's PC\.gradle\caches\transforms-3\b4acea2496a85769a4bb0d760bff270c\transformed\jetified-camerakit-1.0.0-beta3.11\AndroidManifest.xml:20:5-22:36
+46        android:name="android.hardware.microphone"
+46-->[com.camerakit:camerakit:1.0.0-beta3.11] C:\Users\Satwik's PC\.gradle\caches\transforms-3\b4acea2496a85769a4bb0d760bff270c\transformed\jetified-camerakit-1.0.0-beta3.11\AndroidManifest.xml:21:9-51
+47        android:required="false" />
+47-->[com.camerakit:camerakit:1.0.0-beta3.11] C:\Users\Satwik's PC\.gradle\caches\transforms-3\b4acea2496a85769a4bb0d760bff270c\transformed\jetified-camerakit-1.0.0-beta3.11\AndroidManifest.xml:22:9-33
+48
+49    <application
+49-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:18:5-46:19
+50        android:name="com.example.maizedisease.Global"
+50-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:19:9-31
+51        android:allowBackup="true"
+51-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:20:9-35
+52        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+52-->[androidx.core:core:1.7.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\9339927e08badd09bc5459e4ba900d5f\transformed\core-1.7.0\AndroidManifest.xml:24:18-86
+53        android:debuggable="true"
+54        android:extractNativeLibs="false"
+55        android:icon="@mipmap/ic_launcher"
+55-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:21:9-43
+56        android:label="@string/app_name"
+56-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:22:9-41
+57        android:networkSecurityConfig="@xml/network_security_config"
+57-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:23:9-69
+58        android:roundIcon="@mipmap/ic_launcher_round"
+58-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:24:9-54
+59        android:supportsRtl="true"
+59-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:25:9-35
+60        android:testOnly="true"
+60-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:26:9-33
+61        android:theme="@style/Theme.AppCompat.NoActionBar"
+61-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:27:9-59
+62        android:usesCleartextTraffic="true" >
+62-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:28:9-44
+63        <activity
+63-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:29:9-31:40
+64            android:name="com.example.maizedisease.MapActivity"
+64-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:30:13-40
+65            android:exported="false" />
+65-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:31:13-37
+66        <activity
+66-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:32:9-39:20
+67            android:name="com.example.maizedisease.LoginSignUpActivity"
+67-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:32:19-54
+68            android:exported="true" >
+68-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:33:13-36
+69            <intent-filter>
+69-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:34:13-38:29
+70                <action android:name="android.intent.action.MAIN" />
+70-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:35:17-69
+70-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:35:25-66
+71
+72                <category android:name="android.intent.category.LAUNCHER" />
+72-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:37:17-77
+72-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:37:27-74
+73            </intent-filter>
+74        </activity>
+75        <activity
+75-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:40:9-42:39
+76            android:name="com.example.maizedisease.VideoResultsActivity"
+76-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:41:13-49
+77            android:exported="true" />
+77-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:42:13-36
+78        <activity android:name="com.example.maizedisease.MainActivity" />
+78-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:43:9-50
+78-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:43:19-47
+79        <activity android:name="com.example.maizedisease.ImageClickedActivity" />
+79-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:44:9-58
+79-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:44:19-55
+80        <activity android:name="com.example.maizedisease.PastDataActivity" />
+80-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:45:9-54
+80-->D:\Semester VI\RnD\Frontend\app\src\main\AndroidManifest.xml:45:19-51
+81        <activity
+81-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Satwik's PC\.gradle\caches\transforms-3\bae1d6d19b4561ae25afe8e3a943ab2f\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+82            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+82-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Satwik's PC\.gradle\caches\transforms-3\bae1d6d19b4561ae25afe8e3a943ab2f\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+83            android:exported="false"
+83-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Satwik's PC\.gradle\caches\transforms-3\bae1d6d19b4561ae25afe8e3a943ab2f\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+84            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+84-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Satwik's PC\.gradle\caches\transforms-3\bae1d6d19b4561ae25afe8e3a943ab2f\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+85
+86        <meta-data
+86-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\e6d400ba5c8d05501ff6f03a459292e6\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:21:9-23:69
+87            android:name="com.google.android.gms.version"
+87-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\e6d400ba5c8d05501ff6f03a459292e6\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:22:13-58
+88            android:value="@integer/google_play_services_version" />
+88-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\e6d400ba5c8d05501ff6f03a459292e6\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:23:13-66
+89
+90        <provider
+90-->[androidx.emoji2:emoji2:1.0.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\09b79be83fba3907471fe1de63f439d3\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
+91            android:name="androidx.startup.InitializationProvider"
+91-->[androidx.emoji2:emoji2:1.0.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\09b79be83fba3907471fe1de63f439d3\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:27:13-67
+92            android:authorities="com.example.maizedisease.androidx-startup"
+92-->[androidx.emoji2:emoji2:1.0.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\09b79be83fba3907471fe1de63f439d3\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:28:13-68
+93            android:exported="false" >
+93-->[androidx.emoji2:emoji2:1.0.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\09b79be83fba3907471fe1de63f439d3\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:29:13-37
+94            <meta-data
+94-->[androidx.emoji2:emoji2:1.0.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\09b79be83fba3907471fe1de63f439d3\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:31:13-33:52
+95                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+95-->[androidx.emoji2:emoji2:1.0.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\09b79be83fba3907471fe1de63f439d3\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:32:17-75
+96                android:value="androidx.startup" />
+96-->[androidx.emoji2:emoji2:1.0.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\09b79be83fba3907471fe1de63f439d3\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:33:17-49
+97            <meta-data
+97-->[com.mapbox.maps:android-core:10.2.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\b3932a65d58a4217ae46ece7bfe5e99c\transformed\jetified-android-core-10.2.0\AndroidManifest.xml:27:13-29:52
+98                android:name="com.mapbox.maps.loader.MapboxMapsInitializer"
+98-->[com.mapbox.maps:android-core:10.2.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\b3932a65d58a4217ae46ece7bfe5e99c\transformed\jetified-android-core-10.2.0\AndroidManifest.xml:28:17-76
+99                android:value="androidx.startup" /> <!-- This entry makes MapboxSDKCommonInitializer discoverable. -->
+99-->[com.mapbox.maps:android-core:10.2.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\b3932a65d58a4217ae46ece7bfe5e99c\transformed\jetified-android-core-10.2.0\AndroidManifest.xml:29:17-49
+100            <meta-data
+100-->[com.mapbox.common:common:21.0.1] C:\Users\Satwik's PC\.gradle\caches\transforms-3\c7f4db1f5b8a0d82e659a6dc193df37b\transformed\jetified-common-21.0.1\AndroidManifest.xml:20:13-22:52
+101                android:name="com.mapbox.common.MapboxSDKCommonInitializer"
+101-->[com.mapbox.common:common:21.0.1] C:\Users\Satwik's PC\.gradle\caches\transforms-3\c7f4db1f5b8a0d82e659a6dc193df37b\transformed\jetified-common-21.0.1\AndroidManifest.xml:21:17-76
+102                android:value="androidx.startup" />
+102-->[com.mapbox.common:common:21.0.1] C:\Users\Satwik's PC\.gradle\caches\transforms-3\c7f4db1f5b8a0d82e659a6dc193df37b\transformed\jetified-common-21.0.1\AndroidManifest.xml:22:17-49
+103            <meta-data
+103-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\0e4a425e61d135d109d64d5f17d999df\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
+104                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+104-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\0e4a425e61d135d109d64d5f17d999df\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:32:17-78
+105                android:value="androidx.startup" />
+105-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\0e4a425e61d135d109d64d5f17d999df\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:33:17-49
+106        </provider>
+107        <provider
+107-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:8.1.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\d44f9d1b12a685342b41cf73fe54e262\transformed\jetified-mapbox-android-telemetry-8.1.0\AndroidManifest.xml:21:9-25:39
+108            android:name="com.mapbox.android.telemetry.provider.MapboxTelemetryInitProvider"
+108-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:8.1.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\d44f9d1b12a685342b41cf73fe54e262\transformed\jetified-mapbox-android-telemetry-8.1.0\AndroidManifest.xml:22:13-93
+109            android:authorities="com.example.maizedisease.mapboxtelemetryinitprovider"
+109-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:8.1.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\d44f9d1b12a685342b41cf73fe54e262\transformed\jetified-mapbox-android-telemetry-8.1.0\AndroidManifest.xml:23:13-79
+110            android:exported="false"
+110-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:8.1.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\d44f9d1b12a685342b41cf73fe54e262\transformed\jetified-mapbox-android-telemetry-8.1.0\AndroidManifest.xml:24:13-37
+111            android:initOrder="100" />
+111-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:8.1.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\d44f9d1b12a685342b41cf73fe54e262\transformed\jetified-mapbox-android-telemetry-8.1.0\AndroidManifest.xml:25:13-36
+112
+113        <service
+113-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:8.1.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\d44f9d1b12a685342b41cf73fe54e262\transformed\jetified-mapbox-android-telemetry-8.1.0\AndroidManifest.xml:27:9-30:72
+114            android:name="com.mapbox.android.telemetry.errors.ErrorReporterJobIntentService"
+114-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:8.1.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\d44f9d1b12a685342b41cf73fe54e262\transformed\jetified-mapbox-android-telemetry-8.1.0\AndroidManifest.xml:28:13-93
+115            android:exported="false"
+115-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:8.1.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\d44f9d1b12a685342b41cf73fe54e262\transformed\jetified-mapbox-android-telemetry-8.1.0\AndroidManifest.xml:29:13-37
+116            android:permission="android.permission.BIND_JOB_SERVICE" />
+116-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:8.1.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\d44f9d1b12a685342b41cf73fe54e262\transformed\jetified-mapbox-android-telemetry-8.1.0\AndroidManifest.xml:30:13-69
+117        <service
+117-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:8.1.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\d44f9d1b12a685342b41cf73fe54e262\transformed\jetified-mapbox-android-telemetry-8.1.0\AndroidManifest.xml:31:9-33:40
+118            android:name="com.mapbox.android.telemetry.MapboxTelemetryService"
+118-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:8.1.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\d44f9d1b12a685342b41cf73fe54e262\transformed\jetified-mapbox-android-telemetry-8.1.0\AndroidManifest.xml:32:13-79
+119            android:exported="false" />
+119-->[com.mapbox.mapboxsdk:mapbox-android-telemetry:8.1.0] C:\Users\Satwik's PC\.gradle\caches\transforms-3\d44f9d1b12a685342b41cf73fe54e262\transformed\jetified-mapbox-android-telemetry-8.1.0\AndroidManifest.xml:33:13-37
+120
+121        <receiver
+121-->[com.mapbox.common:common:21.0.1] C:\Users\Satwik's PC\.gradle\caches\transforms-3\c7f4db1f5b8a0d82e659a6dc193df37b\transformed\jetified-common-21.0.1\AndroidManifest.xml:25:9-32:20
+122            android:name="com.mapbox.common.location.LocationUpdatesReceiver"
+122-->[com.mapbox.common:common:21.0.1] C:\Users\Satwik's PC\.gradle\caches\transforms-3\c7f4db1f5b8a0d82e659a6dc193df37b\transformed\jetified-common-21.0.1\AndroidManifest.xml:26:13-78
+123            android:enabled="false"
+123-->[com.mapbox.common:common:21.0.1] C:\Users\Satwik's PC\.gradle\caches\transforms-3\c7f4db1f5b8a0d82e659a6dc193df37b\transformed\jetified-common-21.0.1\AndroidManifest.xml:27:13-36
+124            android:exported="false" >
+124-->[com.mapbox.common:common:21.0.1] C:\Users\Satwik's PC\.gradle\caches\transforms-3\c7f4db1f5b8a0d82e659a6dc193df37b\transformed\jetified-common-21.0.1\AndroidManifest.xml:28:13-37
+125            <intent-filter>
+125-->[com.mapbox.common:common:21.0.1] C:\Users\Satwik's PC\.gradle\caches\transforms-3\c7f4db1f5b8a0d82e659a6dc193df37b\transformed\jetified-common-21.0.1\AndroidManifest.xml:29:13-31:29
+126                <action android:name="com.mapbox.common.location.LocationUpdatesReceiver.ACTION_PROCESS_LOCATION_UPDATES" />
+126-->[com.mapbox.common:common:21.0.1] C:\Users\Satwik's PC\.gradle\caches\transforms-3\c7f4db1f5b8a0d82e659a6dc193df37b\transformed\jetified-common-21.0.1\AndroidManifest.xml:30:17-125
+126-->[com.mapbox.common:common:21.0.1] C:\Users\Satwik's PC\.gradle\caches\transforms-3\c7f4db1f5b8a0d82e659a6dc193df37b\transformed\jetified-common-21.0.1\AndroidManifest.xml:30:25-122
+127            </intent-filter>
+128        </receiver>
+129    </application>
+130
+131</manifest>

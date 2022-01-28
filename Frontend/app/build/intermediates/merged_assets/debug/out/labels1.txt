@@ -1,0 +1,5 @@
+Cercospora_Gray_Leaf_Spot
+Common_Rust_
+Northern_Leaf_Blight
+Healthy
+Unhealthy

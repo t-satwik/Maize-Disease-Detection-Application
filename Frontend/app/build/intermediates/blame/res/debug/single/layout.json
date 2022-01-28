@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "D:\\Semester V\\RnD-App\\MaizeDisease\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\card_layout.xml",
+        "source": "D:\\Semester V\\RnD-App\\MaizeDisease\\app\\src\\main\\res\\layout\\card_layout.xml"
+    },
+    {
+        "merged": "D:\\Semester V\\RnD-App\\MaizeDisease\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_video_results.xml",
+        "source": "D:\\Semester V\\RnD-App\\MaizeDisease\\app\\src\\main\\res\\layout\\activity_video_results.xml"
+    },
+    {
+        "merged": "D:\\Semester V\\RnD-App\\MaizeDisease\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_main.xml",
+        "source": "D:\\Semester V\\RnD-App\\MaizeDisease\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "D:\\Semester V\\RnD-App\\MaizeDisease\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_login_sign_up.xml",
+        "source": "D:\\Semester V\\RnD-App\\MaizeDisease\\app\\src\\main\\res\\layout\\activity_login_sign_up.xml"
+    },
+    {
+        "merged": "D:\\Semester V\\RnD-App\\MaizeDisease\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_past_data.xml",
+        "source": "D:\\Semester V\\RnD-App\\MaizeDisease\\app\\src\\main\\res\\layout\\activity_past_data.xml"
+    },
+    {
+        "merged": "D:\\Semester V\\RnD-App\\MaizeDisease\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\image_clicked.xml",
+        "source": "D:\\Semester V\\RnD-App\\MaizeDisease\\app\\src\\main\\res\\layout\\image_clicked.xml"
+    }
+]

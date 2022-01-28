@@ -1,0 +1,68 @@
+com/example/maizedisease/databinding/ImageClickedBinding.java
+ com.example.maizedisease.databinding.ImageClickedBinding
+com/example/maizedisease/VideoResultsActivity.java
+ com.example.maizedisease.VideoResultsActivity
+ com.example.maizedisease.VideoResultsActivity$1
+ com.example.maizedisease.VideoResultsActivity$2
+ com.example.maizedisease.VideoResultsActivity$3
+com/example/maizedisease/PastDataActivity.java
+ com.example.maizedisease.PastDataActivity
+ com.example.maizedisease.PastDataActivity$1
+com/example/maizedisease/databinding/CardLayoutFramesBinding.java
+ com.example.maizedisease.databinding.CardLayoutFramesBinding
+com/example/maizedisease/databinding/ActivityLoginSignUpBinding.java
+ com.example.maizedisease.databinding.ActivityLoginSignUpBinding
+com/example/maizedisease/ImageClickedActivity.java
+ com.example.maizedisease.ImageClickedActivity
+ com.example.maizedisease.ImageClickedActivity$1
+ com.example.maizedisease.ImageClickedActivity$2
+ com.example.maizedisease.ImageClickedActivity$3
+ com.example.maizedisease.ImageClickedActivity$4
+ com.example.maizedisease.ImageClickedActivity$5
+ com.example.maizedisease.ImageClickedActivity$6
+com/example/maizedisease/FramePrediction.java
+ com.example.maizedisease.FramePrediction
+com/example/maizedisease/FramePredictionAdapter.java
+ com.example.maizedisease.FramePredictionAdapter
+ com.example.maizedisease.FramePredictionAdapter$Viewholder
+com/example/maizedisease/LoginSignUpActivity.java
+ com.example.maizedisease.LoginSignUpActivity
+ com.example.maizedisease.LoginSignUpActivity$1
+ com.example.maizedisease.LoginSignUpActivity$2
+ com.example.maizedisease.LoginSignUpActivity$3
+ com.example.maizedisease.LoginSignUpActivity$4
+ com.example.maizedisease.LoginSignUpActivity$5
+ com.example.maizedisease.LoginSignUpActivity$6
+com/example/maizedisease/DataModel.java
+ com.example.maizedisease.DataModel
+com/example/maizedisease/databinding/ActivityVideoResultsBinding.java
+ com.example.maizedisease.databinding.ActivityVideoResultsBinding
+com/example/maizedisease/databinding/ActivityPastDataBinding.java
+ com.example.maizedisease.databinding.ActivityPastDataBinding
+com/example/maizedisease/DataAdapter.java
+ com.example.maizedisease.DataAdapter
+ com.example.maizedisease.DataAdapter$Viewholder
+com/example/maizedisease/databinding/CardLayoutBinding.java
+ com.example.maizedisease.databinding.CardLayoutBinding
+com/example/maizedisease/databinding/ActivityMapBinding.java
+ com.example.maizedisease.databinding.ActivityMapBinding
+com/example/maizedisease/Global.java
+ com.example.maizedisease.Global
+com/example/maizedisease/databinding/ActivityMainBinding.java
+ com.example.maizedisease.databinding.ActivityMainBinding
+com/example/maizedisease/BuildConfig.java
+ com.example.maizedisease.BuildConfig
+com/example/maizedisease/MainActivity.java
+ com.example.maizedisease.MainActivity
+ com.example.maizedisease.MainActivity$1
+ com.example.maizedisease.MainActivity$2
+ com.example.maizedisease.MainActivity$3
+ com.example.maizedisease.MainActivity$4
+ com.example.maizedisease.MainActivity$4$1
+ com.example.maizedisease.MainActivity$5
+ com.example.maizedisease.MainActivity$6
+ com.example.maizedisease.MainActivity$7
+ com.example.maizedisease.MainActivity$8
+ com.example.maizedisease.MainActivity$9
+com/example/maizedisease/MapActivity.java
+ com.example.maizedisease.MapActivity
